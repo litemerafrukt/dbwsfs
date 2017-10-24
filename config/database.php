@@ -15,5 +15,5 @@
 return [
     "dsn" => "sqlite:".ANAX_APP_PATH."/db/db.sqlite",
 
-    "debug_connect" => true,
+    // "debug_connect" => true,
 ];

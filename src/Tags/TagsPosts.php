@@ -46,6 +46,7 @@ class TagsPosts extends ActiveRecordModel
      */
     public function tagsForPost($postId)
     {
+        $this->db->connect();
         $sql = "SELECT tag FROM tags AS T
             INNER JOIN postTagLinks AS PT ON T.id = PT.tagId
             INNER JOIN posts as P ON P.id = PT.postId

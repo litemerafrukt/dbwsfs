@@ -5,7 +5,7 @@
         <textarea name="comment-new-text" cols="25" rows="3"></textarea>
         <br>
         <input type="hidden" name="parent-id" value="0">
-        <input type="submit" name="new-comment-submitted" value="Svara">
+        <input class="button" type="submit" name="new-comment-submitted" value="Svara">
     </form>
     <?php else : ?>
         <p>Logga in för att kommentera</p>

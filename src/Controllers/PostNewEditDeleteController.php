@@ -69,26 +69,30 @@ class PostNewEditDeleteController extends InjectionAwareClass
      * Guard comment handling
      *
      * @param int $postId
+     *
+     * @SuppressWarnings("ExitExpression")
      */
     private function guard($postId = null)
     {
         $user = $this->di->get('user');
 
         if ($user->isLevel(UserLevels::ADMIN)) {
-            return;
+            return true;
         }
 
         if ($user->isLevel(UserLevels::USER) && $postId == null) {
-            return;
+            return true;
         }
 
         $post = $this->di->posts->fetch($postId);
 
         if ($user->isLevel(UserLevels::USER) && ($post->authorId == $user->id())) {
-            return $postId;
+            return true;
         }
 
         $this->di->get('flash')->setFlash('Logga in först', 'flash-danger');
         $this->di->get('response')->redirect('');
+
+        die();
     }
 }

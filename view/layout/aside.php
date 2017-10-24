@@ -1,8 +1,15 @@
 <img class="mobile-noshow" src="<?= $this->di->get('url')->asset('img/lambda.jpg') ?>" alt="lambdapower!">
-<div class="aside-buttonlike-wrap">
-    <a href="<?= $this->di->get('url')->create('post/new/p') ?>">Nytt inlägg</a>
-    <a href="<?= $this->di->get('url')->create('post/new/q') ?>">Ny fråga</a>
-</div>
+<?php if ($this->di->user->isLevel(litemerafrukt\User\UserLevels::USER)) : ?>
+    <div class="aside-buttonlike-wrap">
+        <a href="<?= $this->di->get('url')->create('post/new/p') ?>">Nytt inlägg</a>
+        <a href="<?= $this->di->get('url')->create('post/new/q') ?>">Ny fråga</a>
+    </div>
+<?php else : ?>
+    <div class="aside-buttonlike-wrap">
+        <a href="<?= $this->di->get('url')->create('user/login') ?>">Logga in</a>
+    </div>
+<?php endif ?>
+
 <div class="aside-users">
     <h3>topplistan</h3>
     <table>
