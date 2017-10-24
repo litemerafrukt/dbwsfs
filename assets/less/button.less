@@ -1,0 +1,42 @@
+.button {
+    border: none;
+    background: @mainAccent;
+    padding: 5px 10px;
+    border-radius: 2px;
+    // box-shadow: rgba(0,0,0,1) 0 1px 0;
+    // text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 17px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    letter-spacing: 1px;
+}
+
+.button-small {
+    padding: 0 2px;
+    font-size: smaller;
+}
+
+.button-large {
+    padding: 7px 14px;
+}
+
+.button-wide {
+    width: 100%;
+}
+
+.button:hover {
+    border: none;
+    background: darken(@mainAccent, 15%);
+    color: #ccc;
+}
+
+.button:active {
+    border: none;
+    background: darken(@mainAccent, 19%);
+}
+
+a.button {
+    cursor: default;
+}

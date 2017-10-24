@@ -1,0 +1,93 @@
+@import './tagbar.less';
+
+.login-button {
+    float: right;
+    padding: .5rem;
+    margin-right: .5rem;
+    border-radius: 50%;
+    border: 1px solid darken(@mainAccent, 15%);
+    font-size: x-large;
+    //box-shadow: darken(@mainAccent, 35%) 1px 0 10px;
+}
+
+.logo-area {
+    background: url('../../htdocs/img/maple2.jpg') no-repeat;
+    background-size: 35rem;
+    display: flex;
+    justify-content: space-between;
+    // border-bottom: 3px solid #CAD0C9;
+    padding: 1rem 0 1rem 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+
+
+    img {
+        max-width: 87px;
+        margin-right: .75rem;
+    }
+
+    a {
+        color: @mainAccent;
+
+        :hover {
+            color: @mainBackgroundColor;
+        }
+
+        :visited {
+            color: @mainAccent;
+        }
+    }
+
+    h1 {
+        display: inline;
+        // font-family: "source code pro", "menlo", "consolas", monospace;
+        font-size: 32px;
+        font-weight: bold;
+        color: lighten(@mainAccent, 35%);
+        -webkit-text-stroke: 1px darken(@mainAccent, 25%);
+        text-shadow: darken(@mainAccent, 35%) 1px 0 10px;
+        padding-left: 1rem;
+    }
+
+    @media all and (max-width: 750px) {
+        .login-button {
+            zoom: 75%;
+        }
+        img {
+            max-width: 57px;
+        }
+        h1 {
+            font-size: smaller;
+        }
+    }
+}
+
+.header-page-menu {
+    width: 100%;
+    height: 3rem;
+    // background-color: lighten(@mainColor, 15%);
+    // color: @mainBackgroundColor;
+    // border-top: 2px solid lighten(@mainColor, 15%);
+    // border-bottom: 2px solid lighten(@mainColor, 15%);
+    border-top: 2px solid darken(@mainAccent, 15%);
+    border-bottom: 2px solid darken(@mainAccent, 15%);
+
+    nav {
+        display: flex;
+        width: 100%;
+        height: 3rem;
+        padding-left: 1rem;
+        align-items: center;
+
+        .nav-item {
+            color: @mainAccent;
+            padding-right: 1rem;
+            :hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}

@@ -1,0 +1,9 @@
+/.bin
+/build
+/vendor
+/node_modules
+/cache
+/.vscode
+/.idea
+/config/database.php
+/config/olddatabase.php

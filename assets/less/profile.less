@@ -1,0 +1,33 @@
+.user-profile-top-wrap {
+    display: flex;
+    justify-content: space-between;
+
+    @media all and (max-width: 750px) {
+        flex-direction: column;
+    }
+}
+
+.user-profile-posts-comments {
+    display: flex;
+    justify-content: space-between;
+
+    @media all and (max-width: 750px) {
+        flex-direction: column;
+    }
+}
+
+.user-profile-info,
+.user-profile-posts {
+    width: 66%;
+    @media all and (max-width: 750px) {
+        width: 100%;
+    }
+}
+
+.user-profile-controls,
+.user-profile-comments {
+    width: 33%;
+    @media all and (max-width: 750px) {
+        width: 100%;
+    }
+}

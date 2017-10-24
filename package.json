@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "laravel-mix": "^1.4.2"
+  },
+  "scripts": {
+    "dev": "webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "webpack --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch-poll": "webpack --watch --watch-poll --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "webpack --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "dependencies": {
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
+    "normalize.css": "^7.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "ts-loader": "^2.3.2",
+    "typescript": "^2.4.2"
+  }
+}

@@ -1,0 +1,53 @@
+.post-tags-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+    li {
+        float: left;
+    }
+
+    li a {
+        display: block;
+        text-align: center;
+        padding-right: .5rem;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        text-decoration: underline;
+    }
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        width: 45px;
+        height: 45px;
+    }
+
+    @media all and (max-width: 470px) {
+        flex-direction: column;
+    }
+}
+
+.post-author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 13rem;
+    height: 4rem;
+}
+
+.post-tags {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.post-form {
+    display: flex;
+    align-items: center;
+}
