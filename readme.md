@@ -7,6 +7,7 @@ Denna sajt är skapad som slutprojekt i kursen [Webbaserade ramverk 1 7,5p](http
 
 ## Installation
 1. Klona repot.
+2. `composer install`
 
 Det är allt.
 
