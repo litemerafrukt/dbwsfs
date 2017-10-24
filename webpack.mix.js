@@ -12,7 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix.js('assets/js/app.js', 'htdocs/js/build/app.js')
-    .less('assets/less/app.less', 'htdocs/css/build/app.css');
+    .less('assets/less/app.less', 'htdocs/css/build/app.css').options({
+        processCssUrls: false
+    });
 
 // Full API
 // mix.js(src, output);

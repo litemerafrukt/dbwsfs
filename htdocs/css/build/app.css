@@ -597,7 +597,7 @@ thead {
   font-size: x-large;
 }
 .logo-area {
-  background: url(/images/maple2.jpg?d59672ba3954e3ba47b0a38baacbabc7) no-repeat;
+  background: url('../../img/maple2.jpg') no-repeat;
   background-size: 35rem;
   display: -webkit-box;
   display: -ms-flexbox;
