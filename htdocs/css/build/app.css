@@ -927,6 +927,10 @@ a.nav-item:hover {
     padding: 0;
   }
 }
+.aside .aside-about a,
+.aside .aside-about :hover {
+  color: #3e3e3e;
+}
 .aside-buttonlike-wrap {
   display: -webkit-box;
   display: -ms-flexbox;

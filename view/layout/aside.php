@@ -24,7 +24,10 @@
         <?php endforeach ?>
     </table>
 </div>
+
 <div class="aside-about">
-    <h3>Om</h3>
-    <p>Forum om funktionell programmering.</p>
+    <a href="<?= $this->di->url->create('about') ?>">
+        <h3>Om</h3>
+        <p>Forum om funktionell programmering.</p>
+    </a>
 </div>
