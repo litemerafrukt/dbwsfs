@@ -2,32 +2,16 @@
 namespace litemerafrukt\Controllers;
 
 use litemerafrukt\Utils\InjectionAwareClass;
-use litemerafrukt\Posts\Posts;
-use litemerafrukt\Tags\TagsPosts;
-use litemerafrukt\Gravatar\Gravatar;
 use litemerafrukt\User\UserLevels;
-
-use litemerafrukt\Comments\Comments;
 
 class PostsController extends InjectionAwareClass
 {
-    private $posts;
-    private $comments;
-    private $tagsPosts;
-
-    public function __construct(Posts $postsHandler, Comments $comments, TagsPosts $tagsPosts)
-    {
-        $this->posts = $postsHandler;
-        $this->comments = $comments;
-        $this->tagsPosts = $tagsPosts;
-    }
-
     /**
      * posts root page
      */
     public function index()
     {
-        $posts = $this->posts->all();
+        $posts = $this->di->posts->all();
         $this->showPostList($posts, "Hem");
     }
 
@@ -36,7 +20,7 @@ class PostsController extends InjectionAwareClass
      */
     public function posts()
     {
-        $posts = $this->posts->all('p');
+        $posts = $this->di->posts->all('p');
         $this->showPostList($posts, "Inlägg");
     }
 
@@ -45,7 +29,7 @@ class PostsController extends InjectionAwareClass
      */
     public function questions()
     {
-        $posts = $this->posts->all('q');
+        $posts = $this->di->posts->all('q');
         $this->showPostList($posts, "Frågor");
     }
 
@@ -58,7 +42,7 @@ class PostsController extends InjectionAwareClass
      */
     public function postsByTag($tag)
     {
-        $posts = $this->tagsPosts->postsByTag($tag);
+        $posts = $this->di->tagsPosts->postsByTag($tag);
         $this->showPostList($posts, $tag, $tag);
     }
 
@@ -73,8 +57,8 @@ class PostsController extends InjectionAwareClass
         $user->isUser = $user->isLevel(UserLevels::USER);
 
         $posts = \array_map(function ($post) {
-            $post->nrOfComments = $this->comments->countCommentsFor($post->id);
-            $post->points += $this->comments->commentPointsFor($post->id);
+            $post->nrOfComments = $this->di->comments->countCommentsFor($post->id);
+            $post->points += $this->di->comments->commentPointsFor($post->id);
             return $post;
         }, $posts);
 

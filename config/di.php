@@ -163,7 +163,7 @@ return [
     "tagsController" => [
         "shared" => true,
         "callback" => function () {
-            $tagsController = new litemerafrukt\Controllers\TagsController($this->get('tagModel'));
+            $tagsController = new litemerafrukt\Controllers\TagsController();
             $tagsController->setDi($this);
             return $tagsController;
         }
@@ -232,11 +232,7 @@ return [
     "postsController" => [
         "shared" => true,
         "callback" => function () {
-            $postsController = new litemerafrukt\Controllers\PostsController(
-                $this->get('posts'),
-                $this->get('comments'),
-                $this->get('tagsPosts')
-            );
+            $postsController = new litemerafrukt\Controllers\PostsController();
             $postsController->setDi($this);
             return $postsController;
         }
@@ -251,8 +247,6 @@ return [
             };
 
             $postController = new litemerafrukt\Controllers\PostController(
-                $this->get('posts'),
-                $this->get('comments'),
                 $textFormatter
             );
             $postController->setDi($this);
@@ -262,7 +256,7 @@ return [
     "postNewEditDeleteController" => [
         "shared" => true,
         "callback" => function () {
-            $postsController = new litemerafrukt\Controllers\PostNewEditDeleteController($this->get('posts'), $this->get('comments'));
+            $postsController = new litemerafrukt\Controllers\PostNewEditDeleteController();
             $postsController->setDi($this);
             return $postsController;
         }
@@ -292,7 +286,7 @@ return [
     "userController" => [
         "shared" => true,
         "callback" => function () {
-            $userController = new litemerafrukt\Controllers\UserController($this->get('userHandler'));
+            $userController = new litemerafrukt\Controllers\UserController();
             $userController->setDI($this);
             return $userController;
         }
@@ -300,7 +294,7 @@ return [
     "userAccountController" => [
         "shared" => true,
         "callback" => function () {
-            $userController = new litemerafrukt\Controllers\UserAccountController($this->get('userHandler'));
+            $userController = new litemerafrukt\Controllers\UserAccountController();
             $userController->setDI($this);
             return $userController;
         }
@@ -308,7 +302,7 @@ return [
     "userRegisterController" => [
         "shared" => true,
         "callback" => function () {
-            $userController = new litemerafrukt\Controllers\UserRegisterController($this->get('userHandler'));
+            $userController = new litemerafrukt\Controllers\UserRegisterController();
             $userController->setDI($this);
             return $userController;
         }
@@ -325,10 +319,7 @@ return [
         "shared" => true,
         "callback" => function () {
             $usersHandler = new litemerafrukt\Admin\UsersHandler($this->get('olddb'));
-            $userController = new litemerafrukt\Controllers\AdminUsersController(
-                $this->get('userHandler'),
-                $this->get('usersHandler')
-            );
+            $userController = new litemerafrukt\Controllers\AdminUsersController();
             $userController->setDI($this);
             return $userController;
         }

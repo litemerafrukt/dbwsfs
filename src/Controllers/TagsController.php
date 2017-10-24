@@ -5,19 +5,12 @@ use litemerafrukt\Utils\InjectionAwareClass;
 
 class TagsController extends InjectionAwareClass
 {
-    private $tagModel;
-
-    public function __construct($tagModel)
-    {
-        $this->tagModel = $tagModel;
-    }
-
     /**
      * Insert toptags into layout
      */
     public function toptags()
     {
-        $toptags = $this->tagModel->toptags();
+        $toptags = $this->di->tagModel->toptags();
         $this->di->get('view')->add('layout/tagbar', \compact('toptags'), 'tagbar');
     }
 
@@ -26,7 +19,7 @@ class TagsController extends InjectionAwareClass
      */
     public function index()
     {
-        $tags = $this->tagModel->toptags(100000);
+        $tags = $this->di->tagModel->toptags(100000);
         $this->di->get('pageRender')->quick('tags/tags', "Taggar", \compact('tags'));
     }
 }

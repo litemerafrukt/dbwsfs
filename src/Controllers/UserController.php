@@ -10,13 +10,6 @@ use litemerafrukt\Forms\User\Login\LoginForm;
  */
 class UserController extends InjectionAwareClass
 {
-    private $userHandler;
-
-    public function __construct($userHandler)
-    {
-        $this->userHandler = $userHandler;
-    }
-
     /**
      * Show login
      */
@@ -27,7 +20,7 @@ class UserController extends InjectionAwareClass
             $this->di->get('response')->redirect("user/profile");
         }
 
-        $form = new LoginForm($this->di, $this->userHandler);
+        $form = new LoginForm($this->di, $this->di->userHandler);
 
         $form->check();
 

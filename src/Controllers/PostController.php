@@ -2,23 +2,16 @@
 namespace litemerafrukt\Controllers;
 
 use litemerafrukt\Utils\InjectionAwareClass;
-use litemerafrukt\Posts\Posts;
 use litemerafrukt\Gravatar\Gravatar;
 use litemerafrukt\User\UserLevels;
 
-use litemerafrukt\Comments\Comments;
-
 class PostController extends InjectionAwareClass
 {
-    private $posts;
     private $formatter;
-    private $comments;
 
-    public function __construct(Posts $postsHandler, Comments $comments, $formatter)
+    public function __construct($formatter)
     {
-        $this->posts = $postsHandler;
         $this->formatter = $formatter;
-        $this->comments = $comments;
     }
 
     /**
@@ -37,9 +30,9 @@ class PostController extends InjectionAwareClass
         $this->di->get('userCred')->addCred(1);
 
         if ($this->di->request->getPost('vote-up-submitted', false)) {
-            $this->posts->vote($id, 1);
+            $this->di->posts->vote($id, 1);
         } else if ($this->di->request->getPost('vote-down-submitted', false)) {
-            $this->posts->vote($id, -1);
+            $this->di->posts->vote($id, -1);
         }
 
         $this->di->get('response')->redirectPrevious();
@@ -52,9 +45,9 @@ class PostController extends InjectionAwareClass
      */
     public function show($id)
     {
-        $post = $this->posts->fetch($id);
+        $post = $this->di->posts->fetch($id);
         $post->gravatar = new Gravatar($post->authorEmail);
-        $post->points += $this->comments->commentPointsFor($post->id);
+        $post->points += $this->di->comments->commentPointsFor($post->id);
 
         $user = $this->di->get('user');
         $user->isUser = $user->isLevel(UserLevels::USER);
@@ -65,7 +58,7 @@ class PostController extends InjectionAwareClass
             $authorName = $user->name;
             $parentId = $this->di->request->getPost('parent-id', 0);
             $text = \trim($this->di->request->getPost('comment-new-text'));
-            $this->comments->new($id, $parentId, $authorId, $authorName, $text);
+            $this->di->comments->new($id, $parentId, $authorId, $authorName, $text);
 
             $this->di->get('userCred')->addCred($post->points + 5);
 
@@ -73,23 +66,23 @@ class PostController extends InjectionAwareClass
         } else if ($this->di->request->getPost('edit-comment-submitted', false) && $user->isUser) {
             $id = $this->di->request->getPost('comment-id', null);
             $text = \trim($this->di->request->getPost('comment-edit-text', ''));
-            $this->comments->update($id, $text, function ($comment) use ($user) {
+            $this->di->comments->update($id, $text, function ($comment) use ($user) {
                 return $comment->authorId == $user->id || $user->isAdmin;
             });
             $this->di->get("response")->redirectSelf();
         } else if ($this->di->request->getPost('vote-up-comment-submitted', false) && $user->isUser) {
             $id = $this->di->request->getPost('comment-id', null);
-            $this->comments->vote($id, 1);
+            $this->di->comments->vote($id, 1);
             $this->di->get('userCred')->addCred(1);
             $this->di->get("response")->redirectSelf();
         } else if ($this->di->request->getPost('vote-down-comment-submitted', false) && $user->isUser) {
             $id = $this->di->request->getPost('comment-id', null);
-            $this->comments->vote($id, -1);
+            $this->di->comments->vote($id, -1);
             $this->di->get('userCred')->addCred(1);
             $this->di->get("response")->redirectSelf();
         } else if ($this->di->request->getPost('mark-comment-submitted', false) && $user->id == $post->authorId) {
             $id = $this->di->request->getPost('comment-id', null);
-            $this->comments->toggleMarked($id);
+            $this->di->comments->toggleMarked($id);
             $this->di->get("response")->redirectSelf();
         };
 
@@ -97,7 +90,7 @@ class PostController extends InjectionAwareClass
 
         $urlCreator = [$this->di->get('url'), "create"];
 
-        $commentsHTML = $this->comments->getHtml($id, $post->authorId, $user, $sortBy, $urlCreator);
+        $commentsHTML = $this->di->comments->getHtml($id, $post->authorId, $user, $sortBy, $urlCreator);
 
         $viewData = \array_merge(
             \compact('post', 'user', 'commentsHTML', 'sortBy'),

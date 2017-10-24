@@ -105,6 +105,6 @@ class EditForm extends FormModel
      */
     public function callbackSuccess()
     {
-        $this->di->get('response')->redirect("user/account/profile");
+        $this->di->get('response')->redirect("user/profile");
     }
 }

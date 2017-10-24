@@ -14,7 +14,7 @@ require ANAX_INSTALL_PATH . "/config/error_reporting.php";
 require ANAX_INSTALL_PATH . "/vendor/autoload.php";
 
 // Startup dependency container
-$di  = new \Anax\DI\DIFactoryConfig("di.php");
+$di  = new \Anax\DI\DIFactoryConfigMagic("di.php");
 
 // Load the routes
 require ANAX_INSTALL_PATH . "/config/route.php";

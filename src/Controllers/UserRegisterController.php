@@ -12,13 +12,6 @@ use litemerafrukt\Gravatar\Gravatar;
  */
 class UserRegisterController extends InjectionAwareClass
 {
-    private $userHandler;
-
-    public function __construct($userHandler)
-    {
-        $this->userHandler = $userHandler;
-    }
-
     /**
      * Show register page
      */
@@ -28,7 +21,7 @@ class UserRegisterController extends InjectionAwareClass
             $this->di->get('response')->redirect("user/account/profile");
         }
 
-        $form = new RegisterForm($this->di, $this->userHandler);
+        $form = new RegisterForm($this->di, $this->di->userHandler);
 
         $form->check();
 

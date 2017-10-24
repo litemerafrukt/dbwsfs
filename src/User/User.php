@@ -90,9 +90,10 @@ class User
         $name = $this->name;
         $email = $this->email;
         $level = $this->level;
+        $cred = $this->cred;
 
         \extract($updatedFields);
 
-        return new User($id, $name, $email, $level);
+        return new User($id, $name, $email, $level, $cred);
     }
 }

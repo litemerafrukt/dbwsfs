@@ -70,7 +70,7 @@ class UserHandler
 
         $id = $this->db->getPDO()->lastInsertId();
 
-        $user = new User($id, $name, $email, $level);
+        $user = new User($id, $name, $email, $level, 0);
 
         return [true, $user];
     }

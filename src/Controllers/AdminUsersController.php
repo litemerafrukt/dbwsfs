@@ -10,22 +10,13 @@ use litemerafrukt\User\UserLevels;
  */
 class AdminUsersController extends InjectionAwareClass
 {
-    private $userHandler;
-    private $usersHandler;
-
-    public function __construct($userHandler, $usersHandler)
-    {
-        $this->userHandler = $userHandler;
-        $this->usersHandler = $usersHandler;
-    }
-
     /**
      * Show users admin page
      */
     public function users()
     {
         $userLevels = new UserLevels();
-        $users = $this->usersHandler
+        $users = $this->di->usersHandler
             ->all()
             ->map(function ($user) use ($userLevels) {
                 $user['userlevel'] = $userLevels->levelToString($user['userlevel']);
@@ -69,7 +60,7 @@ class AdminUsersController extends InjectionAwareClass
             $this->di->get('response')->redirectPrevious();
         }
 
-        list($ok, $userOrMessage) = $this->userHandler->register($name, $password1, $email);
+        list($ok, $userOrMessage) = $this->di->userHandler->register($name, $password1, $email);
 
         if (! $ok) {
             $this->di->get('flash')->setFlash($userOrMessage, 'flash-danger');
@@ -86,7 +77,7 @@ class AdminUsersController extends InjectionAwareClass
      */
     public function edit($id)
     {
-        $user = $this->usersHandler->fetchUser($id);
+        $user = $this->di->usersHandler->fetchUser($id);
         if (! $user) {
             $this->di->get('flash')->setFlash("Hittar inte användare med id: $id", 'flash-danger');
             $this->di->get('response')->redirectPrevious();
@@ -101,7 +92,7 @@ class AdminUsersController extends InjectionAwareClass
      */
     public function handleEdit($id)
     {
-        $user = $this->usersHandler->fetchUser($id);
+        $user = $this->di->usersHandler->fetchUser($id);
         if (! $user) {
             $this->di->get('flash')->setFlash("Hittar inte användare med id: $id", 'flash-danger');
             $this->di->get('response')->redirectPrevious();
@@ -115,7 +106,7 @@ class AdminUsersController extends InjectionAwareClass
             $this->di->get('response')->redirectPrevious();
         }
 
-        list($ok, $message) = $this->userHandler->update($user['id'], $name, $email);
+        list($ok, $message) = $this->di->userHandler->update($user['id'], $name, $email);
 
         if (! $ok) {
             $this->di->get('flash')->setFlash($message, "flash-danger");
@@ -132,7 +123,7 @@ class AdminUsersController extends InjectionAwareClass
      */
     public function delete($id)
     {
-        list($ok, $message) = $this->usersHandler->deleteUser($id);
+        list($ok, $message) = $this->di->usersHandler->deleteUser($id);
 
         if (! $ok) {
             $this->di->get('flash')->setFlash($message, "flash-danger");
@@ -149,7 +140,7 @@ class AdminUsersController extends InjectionAwareClass
      */
     public function activate($id)
     {
-        list($ok, $message) = $this->usersHandler->activateUser($id);
+        list($ok, $message) = $this->di->usersHandler->activateUser($id);
 
         if (! $ok) {
             $this->di->get('flash')->setFlash($message, "flash-danger");
@@ -166,7 +157,7 @@ class AdminUsersController extends InjectionAwareClass
      */
     public function makeAdmin($id)
     {
-        list($ok, $message) = $this->usersHandler->makeAdmin($id);
+        list($ok, $message) = $this->di->usersHandler->makeAdmin($id);
 
         if (! $ok) {
             $this->di->get('flash')->setFlash($message, "flash-danger");

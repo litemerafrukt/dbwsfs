@@ -2,7 +2,6 @@
 namespace litemerafrukt\Controllers;
 
 use litemerafrukt\Utils\InjectionAwareClass;
-use litemerafrukt\Posts\Posts;
 use litemerafrukt\User\UserLevels;
 use litemerafrukt\Forms\Post\NewPost\NewPostForm;
 use litemerafrukt\Forms\Post\EditPost\EditPostForm;
@@ -11,15 +10,6 @@ use litemerafrukt\Comments\Comments;
 
 class PostNewEditDeleteController extends InjectionAwareClass
 {
-    private $posts;
-    private $comments;
-
-    public function __construct(Posts $postHandler, Comments $comments)
-    {
-        $this->posts = $postHandler;
-        $this->comments = $comments;
-    }
-
     /**
      * Add a post
      *
@@ -29,7 +19,7 @@ class PostNewEditDeleteController extends InjectionAwareClass
     {
         $this->guard();
 
-        $form = new NewPostForm($this->di, $this->posts, $type);
+        $form = new NewPostForm($this->di, $this->di->posts, $type);
 
         $form->check();
 
@@ -44,14 +34,14 @@ class PostNewEditDeleteController extends InjectionAwareClass
     public function edit($id)
     {
         $this->guard();
-        $post = $this->posts->fetch($id);
+        $post = $this->di->posts->fetch($id);
 
         if ($post === null) {
             $this->di->get('flash')->setFlash("Inlägget med id: $id hittades inte.", "flash-danger");
             $this->di->get('response')->redirectPrevious();
         }
 
-        $form = new EditPostForm($this->di, $this->posts, $post);
+        $form = new EditPostForm($this->di, $this->di->posts, $post);
 
         $form->check();
 
@@ -67,8 +57,8 @@ class PostNewEditDeleteController extends InjectionAwareClass
     {
         $this->guard($id);
 
-        $this->posts->delete($id);
-        $this->comments->deleteComments($id);
+        $this->di->posts->delete($id);
+        $this->di->comments->deleteComments($id);
 
         $this->di->get('flash')->setFlash("Inlägget raderat.", "flash-info");
 
@@ -92,7 +82,7 @@ class PostNewEditDeleteController extends InjectionAwareClass
             return;
         }
 
-        $post = $this->posts->fetch($postId);
+        $post = $this->di->posts->fetch($postId);
 
         if ($user->isLevel(UserLevels::USER) && ($post->authorId == $user->id())) {
             return $postId;

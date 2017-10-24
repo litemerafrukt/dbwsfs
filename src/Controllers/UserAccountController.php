@@ -14,13 +14,6 @@ use litemerafrukt\Forms\User\Password\PasswordForm;
  */
 class UserAccountController extends InjectionAwareClass
 {
-    private $userHandler;
-
-    public function __construct($userHandler)
-    {
-        $this->userHandler = $userHandler;
-    }
-
     /**
      * Show user profile and logout option
      */
@@ -64,7 +57,7 @@ class UserAccountController extends InjectionAwareClass
     {
         $user = $this->di->get('user');
 
-        $form = new EditForm($this->di, $this->userHandler, $user);
+        $form = new EditForm($this->di, $this->di->userHandler, $user);
 
         $form->check();
 
@@ -80,7 +73,7 @@ class UserAccountController extends InjectionAwareClass
     {
         $user = $this->di->get('user');
 
-        $form = new PasswordForm($this->di, $this->userHandler, $user);
+        $form = new PasswordForm($this->di, $this->di->userHandler, $user);
 
         $form->check();
 
