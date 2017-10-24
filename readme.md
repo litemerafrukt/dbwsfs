@@ -3,7 +3,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/litemerafrukt/dbwsfs/badges/build.png?b=master)](https://scrutinizer-ci.com/g/litemerafrukt/dbwsfs/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/litemerafrukt/dbwsfs/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/litemerafrukt/dbwsfs/?branch=master)
 
-Denna sajt är skapad som slutprojekt i kursen [Webbaserade ramverk 1 7,5p](https://dbwebb.se/kurser/ramverk1) på Blekinge Tekniska Högskola.
+Denna sajt är skapad som slutprojekt i kursen [Webbaserade ramverk 1, 7,5p](https://dbwebb.se/kurser/ramverk1) på Blekinge Tekniska Högskola.
 
 ## Installation
 1. Klona repot.

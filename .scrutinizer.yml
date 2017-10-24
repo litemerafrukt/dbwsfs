@@ -1,6 +1,11 @@
 imports:
     - php
 
+checks:
+    php:
+        code_rating: true
+        duplication: true
+
 filter:
     excluded_paths: [vendor/*, test/*]
 
@@ -15,6 +20,6 @@ build:
         override:
             -
                 command: "phpunit --configuration .phpunit.xml"
-                coverage:
-                    file: "build/coverage.clover"
-                    format: "php-clover"
+                # coverage:
+                #     file: "build/coverage.clover"
+                #     format: "php-clover"
