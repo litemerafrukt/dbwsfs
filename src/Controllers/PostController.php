@@ -27,12 +27,12 @@ class PostController extends InjectionAwareClass
             $this->response->redirectPrevious();
         }
 
-        $this->di->get('userCred')->addCred(1);
-
         if ($this->di->request->getPost('vote-up-submitted', false)) {
             $this->di->posts->vote($id, 1);
+            $this->di->get('userCred')->addCred(1);
         } else if ($this->di->request->getPost('vote-down-submitted', false)) {
             $this->di->posts->vote($id, -1);
+            $this->di->get('userCred')->addCred(-1);
         }
 
         $this->di->get('response')->redirectPrevious();

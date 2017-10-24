@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <p>
     <a href="<?= $this->di->get('url')->create('admin/users/register') ?>">Skapa ny användare</a>
 </p>

@@ -1,16 +1,20 @@
 ---
 title: "Om"
 ...
-# Om mig
+## Om
 
-Jag heter Anders Nygren och har sysslat med programmering i varierande omfattning sedan tonåren. Jag har naturligtvis gjort mycket annat också, som att träna kampsport, terränglöpning, skaffa familj, jobbat som programmerare, sedan som tandläkare, samt på sista tiden räddat mänskligheten i augmented reality-spelet Ingress.
+Detta är ett forum med inlägg, frågor och svar runt funktionell programmering.
 
-Våren 2015 bestämde jag mig för att att börja plugga programmering och sökte ett kurspaket inom webbutveckling på Blekinge Tekniska Högskola. Det gick bra och var riktigt, riktigt kul. Sedan har jag fortsatt med Webprogrammering 120 p och från hösten 2018 kommer jag att syssla enbart med programmering, dels som amanuens och dels med fortsatta studier.
+Skapa ett konto och delta i diskussionen! Alla aktiviteter ger cred men down-votes ger negativ cred, "spread love not hate!"
 
-# Om kursen
+Sidan är skapad som slutprojekt i kursen [Webbaserade ramverk 1 7,5p]() på Blekinge Tekniska Högskola.
 
-Kursen ramverk1 är ny på dbwebb. Jag hoppas att vi ska titta mer på TDD och objektorienteringsprinciper. Inför senare delen av kursen hoppas jag också att vi ska blanda in lite mer javascript i uppgifterna.
+### Källkod
 
-# Om sidan
+Sidan är byggd med [Anax](https://github.com/canax) och finns på [github](https://github.com/litemerafrukt).
 
-Sidan är byggd med [Anax](https://github.com/canax) och finns på [github](https://github.com/litemerafrukt/ramverk1).
+License MIT.
+
+## Om mig
+
+Jag som gjort sidan heter Anders Nygren och kontaktas lättast på litemerafrukt@gmail.com.

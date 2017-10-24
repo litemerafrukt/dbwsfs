@@ -80,7 +80,7 @@ class CommentHandleController extends InjectionAwareClass
     {
         if ($this->user()->isUser) {
             $this->di->comments->vote($commentId, $points);
-            $this->di->get('userCred')->addCred(1);
+            $this->di->get('userCred')->addCred($points);
         }
         $this->di->get("response")->redirect($this->di->get('previousRoute'));
     }
