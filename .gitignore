@@ -5,5 +5,3 @@
 /cache
 /.vscode
 /.idea
-/config/database.php
-/config/olddatabase.php
