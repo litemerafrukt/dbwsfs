@@ -22,5 +22,3 @@ require ANAX_INSTALL_PATH . "/vendor/autoload.php";
 /**
  * Include other files to test, for example mock files.
  */
-
-require __DIR__ . "/setUpTestDb.php";
