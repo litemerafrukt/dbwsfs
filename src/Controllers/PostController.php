@@ -53,39 +53,6 @@ class PostController extends InjectionAwareClass
         $user->isUser = $user->isLevel(UserLevels::USER);
         $user->isAdmin = $user->isLevel(UserLevels::ADMIN);
 
-        if ($this->di->request->getPost('new-comment-submitted', false) && $user->isUser) {
-            $authorId = $user->id;
-            $authorName = $user->name;
-            $parentId = $this->di->request->getPost('parent-id', 0);
-            $text = \trim($this->di->request->getPost('comment-new-text'));
-            $this->di->comments->new($id, $parentId, $authorId, $authorName, $text);
-
-            $this->di->get('userCred')->addCred($post->points + 5);
-
-            $this->di->get("response")->redirectSelf();
-        } else if ($this->di->request->getPost('edit-comment-submitted', false) && $user->isUser) {
-            $id = $this->di->request->getPost('comment-id', null);
-            $text = \trim($this->di->request->getPost('comment-edit-text', ''));
-            $this->di->comments->update($id, $text, function ($comment) use ($user) {
-                return $comment->authorId == $user->id || $user->isAdmin;
-            });
-            $this->di->get("response")->redirectSelf();
-        } else if ($this->di->request->getPost('vote-up-comment-submitted', false) && $user->isUser) {
-            $id = $this->di->request->getPost('comment-id', null);
-            $this->di->comments->vote($id, 1);
-            $this->di->get('userCred')->addCred(1);
-            $this->di->get("response")->redirectSelf();
-        } else if ($this->di->request->getPost('vote-down-comment-submitted', false) && $user->isUser) {
-            $id = $this->di->request->getPost('comment-id', null);
-            $this->di->comments->vote($id, -1);
-            $this->di->get('userCred')->addCred(1);
-            $this->di->get("response")->redirectSelf();
-        } else if ($this->di->request->getPost('mark-comment-submitted', false) && $user->id == $post->authorId) {
-            $id = $this->di->request->getPost('comment-id', null);
-            $this->di->comments->toggleMarked($id);
-            $this->di->get("response")->redirectSelf();
-        };
-
         $sortBy = $this->di->request->getGet('sort', 'id');
 
         $urlCreator = [$this->di->get('url'), "create"];

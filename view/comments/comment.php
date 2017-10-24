@@ -11,17 +11,17 @@
                 </a>
             </strong>
             <span> ; <?= $comment->points ?> poäng </span>
-            @ <?= $comment->created ?> & <?= $comment->updated ?>
+            @ <?= $comment->created ?> <?= $comment->updated ? "& $comment->updated" : '' ?>
         </p>
     </div>
     <?php if ($user->isUser) : ?>
         <form method="post" action="#comment<?= $comment->id ?>">
-            <input type="hidden" name="comment-id" value="<?= $comment->id ?>">
-            <input class="comment-button" type="submit" name="vote-up-comment-submitted" value="+1">
-            <input class="comment-button" type="submit" name="vote-down-comment-submitted" value="-1">
+            <a class="comment-button" href="<?= $urlCreator('post/voteup/'.$comment->id) ?>">+1</a>
+            <a class="comment-button" href="<?= $urlCreator('post/votedown/'.$comment->id) ?>">-1</a>
             <?php if ($user->id == $postAuthorId) : ?>
-                <input class="comment-button" type="submit" name="mark-comment-submitted" value="markera">
+                <a class="comment-button" href="<?= $urlCreator('post/mark/'.$comment->id) ?>">markera</a>
             <?php endif ?>
+            <input type="hidden" name="comment-id" value="<?= $comment->id ?>">
             <?php if ($user->isAdmin || ($user->id == $comment->authorId)) : ?>
                 <button class="comment-next-sibling-toggler comment-button">
                     ändra

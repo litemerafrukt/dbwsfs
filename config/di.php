@@ -229,6 +229,14 @@ return [
             return $comments;
         }
     ],
+    "commentHandleController" => [
+        "shared" => true,
+        "callback" => function () {
+            $postsController = new litemerafrukt\Controllers\CommentHandleController();
+            $postsController->setDi($this);
+            return $postsController;
+        }
+    ],
     "postsController" => [
         "shared" => true,
         "callback" => function () {

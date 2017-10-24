@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<?= $di->get('url')->asset('css/lib/normalize.css') ?>">
     <link rel="stylesheet" href="<?= $di->get('url')->asset('css/build/app.css') ?>">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <link rel="shortcut icon" href="<?= $di->get('url')->asset('img/favicon.ico') ?>">
 </head>
 <body>
 

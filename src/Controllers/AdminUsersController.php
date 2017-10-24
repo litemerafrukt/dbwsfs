@@ -5,11 +5,16 @@ namespace litemerafrukt\Controllers;
 use litemerafrukt\Utils\InjectionAwareClass;
 use litemerafrukt\User\UserLevels;
 
+use Anax\DI\InjectionAwareInterface;
+use Anax\DI\InjectionAwareTrait;
+
 /**
  * Controller for admin stuff
  */
-class AdminUsersController extends InjectionAwareClass
+class AdminUsersController implements InjectionAwareInterface
 {
+    use InjectionAwareTrait;
+
     /**
      * Show users admin page
      */
