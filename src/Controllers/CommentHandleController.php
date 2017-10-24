@@ -47,7 +47,7 @@ class CommentHandleController extends InjectionAwareClass
         if ($this->user()->id == $post->authorId) {
             $this->di->comments->toggleMarked($commentId);
         }
-        $this->di->get("response")->redirect($this->di->get('previousRoute')."#comment$commentId");
+        $this->di->get("response")->redirect($this->di->get('previousRoute'));
     }
 
     /**
@@ -82,7 +82,7 @@ class CommentHandleController extends InjectionAwareClass
             $this->di->comments->vote($commentId, $points);
             $this->di->get('userCred')->addCred(1);
         }
-        $this->di->get("response")->redirect($this->di->get('previousRoute')."#comment$commentId");
+        $this->di->get("response")->redirect($this->di->get('previousRoute'));
     }
 
     private function user()

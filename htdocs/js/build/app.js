@@ -75,8 +75,6 @@ module.exports = __webpack_require__(2);
 /* 1 */
 /***/ (function(module, exports) {
 
-// import {sayHello} from "./helloworld"
-
 (function () {
     var deleteLinks = Array.from(document.querySelectorAll(".delete"));
 
@@ -89,12 +87,36 @@ module.exports = __webpack_require__(2);
         });
     });
 
-    var commentReplyTogglers = Array.from(document.getElementsByClassName("comment-next-sibling-toggler"));
+    var setupTarget = function setupTarget(toggler) {
+        var dataTargetId = toggler.getAttribute("data-target");
+        var dataTarget = document.getElementById(dataTargetId);
+        var dataCloseId = toggler.getAttribute("data-close");
+        var dataClose = document.getElementById(dataCloseId);
 
-    commentReplyTogglers.forEach(function (element) {
-        element.addEventListener("click", function (event) {
+        toggler.addEventListener("click", function (event) {
             event.preventDefault();
-            event.target.nextElementSibling.classList.toggle('noshow');
+            dataTarget.classList.toggle("noshow");
+            dataClose.classList.add("noshow");
+        });
+    };
+
+    var commentReplyTogglers = Array.from(document.querySelectorAll(".comment-edit-reply-toggler"));
+
+    commentReplyTogglers.forEach(setupTarget);
+
+    // const commentEditTogglers = Array.from(document.querySelectorAll(".comment-edit-toggler"));
+
+    // commentEditTogglers.forEach(setupTarget);
+
+    var commentCancelTogglers = Array.from(document.querySelectorAll(".comment-cancel"));
+
+    commentCancelTogglers.forEach(function (cancel) {
+        var dataCloseId = cancel.getAttribute("data-close");
+        var dataClose = document.getElementById(dataCloseId);
+
+        cancel.addEventListener("click", function (event) {
+            event.preventDefault();
+            dataClose.classList.add("noshow");
         });
     });
 })();

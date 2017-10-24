@@ -18,29 +18,57 @@
         <form method="post" action="#comment<?= $comment->id ?>">
             <a class="comment-button" href="<?= $urlCreator('post/voteup/'.$comment->id) ?>">+1</a>
             <a class="comment-button" href="<?= $urlCreator('post/votedown/'.$comment->id) ?>">-1</a>
+
             <?php if ($user->id == $postAuthorId) : ?>
                 <a class="comment-button" href="<?= $urlCreator('post/mark/'.$comment->id) ?>">markera</a>
             <?php endif ?>
+
             <input type="hidden" name="comment-id" value="<?= $comment->id ?>">
+
             <?php if ($user->isAdmin || ($user->id == $comment->authorId)) : ?>
-                <button class="comment-next-sibling-toggler comment-button">
+                <button
+                    class="comment-edit-reply-toggler comment-button"
+                    data-target="edit-comment<?= $comment->id ?>"
+                    data-close="reply-comment<?= $comment->id ?>"
+                >
                     ändra
                 </button>
-                <div class="comment-edit-form noshow" method="post">
-                    <textarea name="comment-edit-text" cols="25" rows="3"><?= htmlentities($comment->text) ?></textarea>
-                    <br>
-                    <input type="submit" name="edit-comment-submitted" value="Ändra">
-                </div>
             <?php endif ?>
-            <button class="comment-next-sibling-toggler comment-button">
+
+            <button
+                class="comment-edit-reply-toggler comment-button"
+                data-target="reply-comment<?= $comment->id ?>"
+                data-close="edit-comment<?= $comment->id ?>"
+            >
                 svara
             </button>
-            <div class="comment-reply-form noshow" method="post">
+
+            <div class="comment-reply-form noshow" id="reply-comment<?= $comment->id ?>">
                 <textarea name="comment-new-text" cols="25" rows="3"></textarea>
                 <br>
                 <input type="hidden" name="parent-id" value="<?= $comment->id ?>">
-                <input type="submit" name="new-comment-submitted" value="Svara">
+                <input class="button" type="submit" name="new-comment-submitted" value="Svara">
+                <button
+                    class="comment-cancel button"
+                    data-close="reply-comment<?= $comment->id ?>"
+                >
+                    Ångra
+                </button>
             </div>
+
+            <?php if ($user->isAdmin || ($user->id == $comment->authorId)) : ?>
+                <div class="comment-edit-form noshow" id="edit-comment<?= $comment->id ?>">
+                    <textarea name="comment-edit-text" cols="25" rows="3"><?= htmlentities($comment->text) ?></textarea>
+                    <br>
+                    <input class="button" type="submit" name="edit-comment-submitted" value="Ändra">
+                    <button
+                        class="comment-cancel button"
+                        data-close="edit-comment<?= $comment->id ?>"
+                    >
+                        Ångra
+                    </button>
+                </div>
+            <?php endif ?>
         </form>
     <?php endif ?>
 

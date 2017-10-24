@@ -70,8 +70,8 @@
 <a name="comments"></a>
 
 <p>Sortera på:
-    <a class="<?= $sortBy == 'id' ? 'active' : '' ?>" href="?sort=id#comments">nyast</a>,
-    <a class="<?= $sortBy == 'points' ? 'active' : '' ?>" href="?sort=points#comments">poäng</a>
+    <a class="<?= $sortBy == 'id' ? 'active' : '' ?>" href="?sort=id">nyast</a>,
+    <a class="<?= $sortBy == 'points' ? 'active' : '' ?>" href="?sort=points">poäng</a>
 </p>
 
 <p><?= $commentsHTML ?></p>
