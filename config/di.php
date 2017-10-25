@@ -252,12 +252,6 @@ return [
     "postController" => [
         "shared" => true,
         "callback" => function () {
-            $purifier = new HTMLPurifier();
-            $textFormatter = function ($rawText) use ($purifier) {
-                $dirty = $this->get('textfilter')->markdown($rawText);
-                return $purifier->purify($dirty);
-            };
-
             $postController = new litemerafrukt\Controllers\PostController($this->formatter);
             $postController->setDi($this);
             return $postController;
