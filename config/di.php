@@ -208,6 +208,16 @@ return [
             return $postSupplier;
         }
     ],
+    "formatter" => [
+        "shared" => true,
+        "callback" => function () {
+            $purifier = new HTMLPurifier();
+            return function ($rawText) use ($purifier) {
+                $dirty = $this->get('textfilter')->markdown($rawText);
+                return $purifier->purify($dirty);
+            };
+        }
+    ],
     "commentModel" => [
         "shared" => true,
         "callback" => function () {
@@ -219,13 +229,7 @@ return [
     "comments" => [
         "shared" => true,
         "callback" => function () {
-            $purifier = new HTMLPurifier();
-            $formatter = function ($rawText) use ($purifier) {
-                $dirty = $this->get('textfilter')->markdown($rawText);
-                return $purifier->purify($dirty);
-            };
-
-            $comments = new litemerafrukt\Comments\Comments($this->get('commentModel'), $formatter);
+            $comments = new litemerafrukt\Comments\Comments($this->get('commentModel'), $this->formatter);
             return $comments;
         }
     ],
@@ -254,9 +258,7 @@ return [
                 return $purifier->purify($dirty);
             };
 
-            $postController = new litemerafrukt\Controllers\PostController(
-                $textFormatter
-            );
+            $postController = new litemerafrukt\Controllers\PostController($this->formatter);
             $postController->setDi($this);
             return $postController;
         }

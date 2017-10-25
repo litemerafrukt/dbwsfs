@@ -2,7 +2,7 @@
     <a name="comment<?= $comment->id ?>"></a>
     <div class="comment-main <?= $comment->marked ? "comment-marked" : "" ?>">
         <p>
-            <?= $formatter(htmlentities($comment->text)) ?>
+            <?= $formatter($comment->text) ?>
         </p>
         <p class="comment-author-created">
             <strong>

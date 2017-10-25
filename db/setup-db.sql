@@ -14,17 +14,17 @@ CREATE TABLE users
 );
 
 INSERT INTO users
-  (username, password, email, userlevel)
+  (username, password, email, cred, userlevel)
 VALUES
-  ('admin', '$2y$10$RCFw4V8duXyBzT2Ti5X7ae.YofcFAMyP40ZNrU3hbEhAOJE0tKhEW', 'noone@nonexistant.io', 1),
-  ('doe', '$2y$10$OcmC0aLKQLCcszlnF4pd.ebFzH87oxkR2Gx7difCeT1g6UogIiUqO', 'jane@doe.io', 2),
-  ('litemerafrukt', '$2y$10$0J5Zto0Cxix1z8o1DH0SuOGTf7sPue2rCmqBPd52QkpVo/Bkgq.B.', 'litemerafrukt@gmail.com', 1)
+  ('admin', '$2y$10$RCFw4V8duXyBzT2Ti5X7ae.YofcFAMyP40ZNrU3hbEhAOJE0tKhEW', 'noone@nonexistant.io', 5, 1),
+  ('doe', '$2y$10$OcmC0aLKQLCcszlnF4pd.ebFzH87oxkR2Gx7difCeT1g6UogIiUqO', 'jane@doe.io', 10, 2),
+  ('litemerafrukt', '$2y$10$0J5Zto0Cxix1z8o1DH0SuOGTf7sPue2rCmqBPd52QkpVo/Bkgq.B.', 'litemerafrukt@gmail.com', 9, 1)
 ;
 
 INSERT INTO users
-  (username, password, email, userlevel, deleted)
+  (username, password, email, cred, userlevel, deleted)
 VALUES
-  ('deadjoe', '$2y$10$OcmC0aLKQLCcszlnF4pd.ebFzH87oxkR2Gx7difCeT1g6UogIiUqO', 'joe@doe.io', 2, datetime('now'))
+  ('deadjoe', '$2y$10$OcmC0aLKQLCcszlnF4pd.ebFzH87oxkR2Gx7difCeT1g6UogIiUqO', 'joe@doe.io', 5, 2, datetime('now'))
 ;
 
 SELECT * FROM users;
@@ -47,13 +47,13 @@ CREATE TABLE posts (
 );
 
 INSERT INTO posts
-  (subject, author, authorId, authorEmail, rawText)
+  (subject, points, author, authorId, authorEmail, rawText)
 VALUES
-  ('First!', 'litemerafrukt', 3, 'litemerafrukt@gmail.com', 'Direkt från `setup-db.sql`!'),
-  ('Second', 'doe', 2, 'jane@doe.io', 'with two comments'),
-  ('Ramda', 'admin', 1, 'admin@admin.io', 'Just check it out already!'),
-  ('Monad', 'deadjoe', 4, 'deadjoe@oldmail.com', 'A monad is a burrito.'),
-  ('Funktor', 'doe', 2, 'jane@doe.io', 'En funktor är nått du kan map:a över.')
+  ('First!', -1, 'litemerafrukt', 3, 'litemerafrukt@gmail.com', 'Direkt från `setup-db.sql`!'),
+  ('Second', 0, 'doe', 2, 'jane@doe.io', 'with two comments'),
+  ('Ramda', 5, 'admin', 1, 'admin@admin.io', 'Just check it out already!'),
+  ('Monad', 1, 'deadjoe', 4, 'deadjoe@oldmail.com', 'A monad is a burrito.'),
+  ('Funktor', 2, 'doe', 2, 'jane@doe.io', 'En funktor är nått du kan map:a över.')
 ;
 
 SELECT * FROM posts;
@@ -76,12 +76,12 @@ CREATE TABLE comments (
 );
 
 INSERT INTO comments
-  (postId, parentId, authorId, authorName,`text`)
+  (postId, parentId, points, authorId, authorName,`text`)
 VALUES
-  (2, 0, 3, 'litemerafrukt', 'whatever'),
-  (3, 0, 1, 'admin', 'whatnot???'),
-  (3, 2, 4, 'deadjoe', 'hear hear'),
-  (2, 0, 4, 'deadjoe', 'chim in')
+  (2, 0, 0, 3, 'litemerafrukt', 'whatever'),
+  (3, 0, 1 ,1, 'admin', 'whatnot???'),
+  (3, 2, 3, 4, 'deadjoe', 'hear hear'),
+  (2, 0, 1, 4, 'deadjoe', 'chim in')
 ;
 
 select * from comments;

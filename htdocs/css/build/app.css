@@ -523,7 +523,6 @@ a.button {
 }
 .comment-main {
   padding: .25rem;
-  max-width: 25rem;
 }
 .comment-marked {
   border: 2px solid #d78d65;
@@ -818,9 +817,10 @@ body {
   color: #3e3e3e;
 }
 pre {
-  border-radius: 3px;
-  border: 1px solid #cccccc;
   background-color: #ffffff;
+}
+pre code {
+  font-size: smaller;
 }
 hr {
   background-image: none;

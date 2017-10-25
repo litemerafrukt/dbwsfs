@@ -60,7 +60,7 @@
         <?php foreach ($comments as $comment) : ?>
             <p>
                 <a href="<?= $this->di->get('url')->create('post/show/'.$comment->postId) ?>">
-                    <span class=""><?= htmlspecialchars($comment->text) ?></span>
+                    <span class=""><?= $this->di->get('formatter')($comment->text) ?></span>
                 </a>
                 <br>
                 <span class="smaller-text">

@@ -18,7 +18,7 @@ class UserRegisterController extends InjectionAwareClass
     public function register()
     {
         if ($this->di->get('session')->get('user')) {
-            $this->di->get('response')->redirect("user/account/profile");
+            $this->di->get('response')->redirect("user/profile");
         }
 
         $form = new RegisterForm($this->di, $this->di->userHandler);
